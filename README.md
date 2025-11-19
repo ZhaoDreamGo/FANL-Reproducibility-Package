@@ -64,6 +64,18 @@ All required LibTorch + CUDA DLLs are provided to ensure out-of-the-box executio
 
 ---
 
+## 🔧 Runtime Libraries (Download from Release)
+
+Due to GitHub’s 100 MB per-file limit, the required LibTorch runtime DLLs and
+the pre-trained FANL TorchScript model are provided in the **GitHub Release**
+rather than in the repository itself.
+
+You can download all required runtime files (including `torch_cpu.dll`,`torch_cuda.dll`....) from the Release section:
+
+👉 https://github.com/ZhaoDreamGo/FANL-Reproducibility-Package.git
+
+These files must be placed alongside `fanl_test.exe` when running inference.
+
 ## ▶️ Running Inference
 
 Full instructions are provided in:
