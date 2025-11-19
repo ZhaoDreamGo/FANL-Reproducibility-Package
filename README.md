@@ -98,5 +98,5 @@ Please cite the accompanying paper if you use this package.
 
 📧 Contact
 
-For questions or clarifications, please contact the corresponding author.
-Or contact us directly at zhao1028166352@gmail.com
+For questions or requests, please reach out to:  
+📧 zhao1028166352@gmail.com
