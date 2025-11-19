@@ -72,7 +72,7 @@ rather than in the repository itself.
 
 You can download all required runtime files (including `torch_cpu.dll`,`torch_cuda.dll`....) from the Release section:
 
-👉 https://github.com/ZhaoDreamGo/FANL-Reproducibility-Package.git
+👉 https://github.com/ZhaoDreamGo/FANL-Reproducibility-Package/releases/tag/v1.0.0
 
 These files must be placed alongside `fanl_test.exe` when running inference.
 
