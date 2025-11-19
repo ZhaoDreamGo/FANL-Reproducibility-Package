@@ -1,0 +1,116 @@
+{
+  "common": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0005,
+    "weight_decay": 1e-4,
+    "num_epochs": 100,
+    "loss_function": "LabelSmoothingCrossEntropy",
+    "label_smoothing": 0.1,
+    "lr_scheduler": {
+      "type": "ReduceLROnPlateau",
+      "mode": "min",
+      "patience": 5,
+      "factor": 0.5
+    },
+    "max_grad_norm": 1.0,
+    "seed": 42,
+    "deterministic": true,
+    "weight_balance_lambda": 0.01
+  },
+  "model": {
+    "name": "AdaptiveFuzzyAttentionCNN",
+    "num_classes": {
+      "PathMNIST": 9,
+      "BloodMNIST": 8
+    },
+    "input_channels": 3,
+    "dropout_rate": 0.3,
+    "fuzzy_layers": {
+      "layer1": {
+        "channels": 16,
+        "reduction_ratio": 4,
+        "num_clusters": 3,
+        "use_spatial": true,
+        "weight_strategy": "hybrid",
+        "adaptive_sigma": true
+      },
+      "layer2": {
+        "channels": 32,
+        "reduction_ratio": 4,
+        "num_clusters": 3,
+        "use_spatial": true,
+        "weight_strategy": "hybrid",
+        "adaptive_sigma": true
+      },
+      "layer3": {
+        "channels": 64,
+        "reduction_ratio": 8,
+        "num_clusters": 3,
+        "use_spatial": true,
+        "weight_strategy": "hybrid",
+        "adaptive_sigma": true
+      },
+      "layer4": {
+        "channels": 128,
+        "reduction_ratio": 8,
+        "num_clusters": 3,
+        "use_spatial": true,
+        "weight_strategy": "hybrid",
+        "adaptive_sigma": true
+      },
+      "layer5": {
+        "channels": 256,
+        "reduction_ratio": 16,
+        "num_clusters": 3,
+        "use_spatial": false,
+        "weight_strategy": "hybrid",
+        "adaptive_sigma": true
+      }
+    }
+  },
+  "experiments": {
+    "PathMNIST_30k_subset": {
+      "dataset": "PathMNIST",
+      "subset_size": 30000,
+      "class_balanced": true,
+      "usage": "ablation_studies_and_component_analysis",
+      "batch_size": 32,
+      "num_workers": 4,
+      "device": "CUDA",
+      "gpus": "NVIDIA GeForce RTX 3060 Ti (multi-GPU cluster)",
+      "split": {
+        "train": 0.70,
+        "val": 0.15,
+        "test": 0.15
+      }
+    },
+    "PathMNIST_full": {
+      "dataset": "PathMNIST",
+      "total_samples": 107180,
+      "usage": "full_scale_experiments",
+      "batch_size": 64,
+      "num_workers": 4,
+      "device": "CUDA",
+      "gpus": "NVIDIA GeForce RTX 3060 Ti (multi-GPU cluster)",
+      "split": {
+        "train": 0.70,
+        "val": 0.15,
+        "test": 0.15
+      }
+    },
+    "BloodMNIST_full": {
+      "dataset": "BloodMNIST",
+      "total_samples": 17092,
+      "usage": "full_scale_experiments",
+      "batch_size": 64,
+      "num_workers": 4,
+      "device": "CUDA",
+      "gpus": "NVIDIA GeForce RTX 3060 Ti (multi-GPU cluster)",
+      "split": {
+        "train": 0.70,
+        "val": 0.15,
+        "test": 0.15
+      }
+    }
+  }
+}

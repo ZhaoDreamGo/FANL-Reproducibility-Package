@@ -1,0 +1,98 @@
+FANL Inference Instructions
+===========================
+
+1. Overview
+-----------
+
+This package provides a minimal reproducibility setup for running inference with the pre-trained
+FANL model on PathMNIST-style images.
+
+Contents:
+- fanl_test.exe            : GPU-enabled inference executable (C++ / LibTorch)
+- adaptive_fanl_traced.pt  : Pre-trained FANL model exported to TorchScript
+- test_img.png             : Example input image
+- dll/                     : Required runtime DLLs (LibTorch + CUDA)
+- inference_instructions.txt (this file)
+
+
+2. System Requirements
+----------------------
+
+- Operating system: Windows 10 / 11 (64-bit)
+- GPU: NVIDIA GPU with CUDA support (tested on GeForce RTX 3060 Ti)
+- No additional installation of PyTorch or CUDA toolkit is required if all DLLs in the `dll/`
+  folder are kept in the same directory as `fanl_test.exe` (or added to PATH).
+
+
+3. Directory Structure
+----------------------
+
+A typical directory layout is:
+
+FANL_Reproducibility_Package/
+├── fanl_test.exe
+├── adaptive_fanl_traced.pt
+├── inference_instructions.txt
+├── test_samples/
+├── dll/
+├── configs/
+├── indices/
+└── minimal_scripts/
+
+
+4. How to Run Inference
+-----------------------
+
+1) Open a terminal (Command Prompt or PowerShell).
+
+2) Change to the directory containing `fanl_test.exe`, for example:
+
+   cd PATH\TO\FANL_Reproducibility
+
+3) Run the following command:
+
+   fanl_test.exe adaptive_fanl_traced.pt test_img.png
+
+   - The first argument is the TorchScript model file (`adaptive_fanl_traced.pt`).
+   - The second argument is the input image file (`test_img.png` or any other image).
+
+
+5. Expected Output
+------------------
+
+If everything is configured correctly, the program will:
+
+- Load the TorchScript model
+- Run GPU-accelerated inference (or fall back to CPU if no GPU is available)
+- Print the predicted class and confidence
+
+Example output:
+
+✔ Using GPU (CUDA)
+✔ Inference completed successfully!
+Predicted class index: 8
+Predicted class: colorectal adenocarcinoma epithelium
+Confidence: 89.7 %
+
+
+6. Input Image Requirements
+---------------------------
+
+- Color image (RGB)
+- Arbitrary size (the executable internally resizes to 28×28 to match PathMNIST)
+- The image is normalized inside the program to match the training preprocessing
+  (values scaled to [0, 1] and then normalized to [-1, 1]).
+
+
+7. Notes
+--------
+
+- If a required DLL is missing, Windows may report an error such as
+  "XXX.dll was not found". In that case, make sure all DLLs from the `dll/` folder
+  are placed in the same directory as `fanl_test.exe` or added to the system PATH.
+
+- This package is intended for inference only. Training code is not required to
+  reproduce the reported inference behavior.
+
+- For experimental details (dataset splits, configurations, and training settings),
+  please refer to the main paper and the accompanying configuration files.

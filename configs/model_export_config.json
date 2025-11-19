@@ -1,0 +1,14 @@
+{
+  "source_framework": "PyTorch",
+  "model_class": "AdaptiveFuzzyAttentionCNN",
+  "num_classes": 9,
+  "input_channels": 3,
+  "input_shape": [1, 3, 28, 28],
+  "export_method": "torch.jit.trace",
+  "example_input": "torch.randn(1, 3, 28, 28)",
+  "device": "cpu",
+  "why_cpu": "CPU export ensures deterministic tracing, avoids CUDA nondeterminism, and produces a device-agnostic TorchScript model that runs on either CPU or GPU.",
+  "output_file": "adaptive_fanl_traced.pt",
+  "check_output_consistency": true,
+  "max_allowed_difference": 1e-6
+}
