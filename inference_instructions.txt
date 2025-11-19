@@ -96,3 +96,8 @@ Confidence: 89.7 %
 
 - For experimental details (dataset splits, configurations, and training settings),
   please refer to the main paper and the accompanying configuration files.
+
+
+
+
+***：This executable (fanl_test.exe) requires the LibTorch runtime DLLs provided in the GitHub Release section of the reproduci­bility package.
