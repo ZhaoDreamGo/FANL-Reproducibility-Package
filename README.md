@@ -11,7 +11,7 @@ including dataset indices, configuration files, TorchScript model, and minimal i
 ---
 
 ## 📌 Contents
-
+```
 FANL_Reproducibility_Package/
 ├── fanl_test.exe
 ├── adaptive_fanl_traced.pt
@@ -21,7 +21,7 @@ FANL_Reproducibility_Package/
 ├── configs/
 ├── indices/
 └── minimal_scripts/
-
+```
 
 ---
 
